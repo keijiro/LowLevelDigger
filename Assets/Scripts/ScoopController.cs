@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.LowLevelPhysics2D;
 
-public class LowLevelScoopMouseController : MonoBehaviour, IStageInitializable
+public class ScoopController : MonoBehaviour, IStageInitializable
 {
-    [field: SerializeField] public LowLevelScoop Scoop { get; set; }
-    [field: SerializeField] public LowLevelBucket Bucket { get; set; }
+    [field: SerializeField] public Scoop Scoop { get; set; }
+    [field: SerializeField] public Bucket Bucket { get; set; }
     [field: SerializeField] public Camera TargetCamera { get; set; }
     [field: SerializeField] public float MouseSpringFrequency { get; set; } = 8f;
     [field: SerializeField] public float MouseSpringDamping { get; set; } = 0.7f;
@@ -20,14 +20,14 @@ public class LowLevelScoopMouseController : MonoBehaviour, IStageInitializable
     {
         if (Scoop == null)
         {
-            Debug.LogError("LowLevelScoop is missing.", this);
+            Debug.LogError("Scoop is missing.", this);
             enabled = false;
             return;
         }
 
         if (Bucket == null)
         {
-            Debug.LogError("LowLevelBucket is missing.", this);
+            Debug.LogError("Bucket is missing.", this);
             enabled = false;
             return;
         }
@@ -37,14 +37,14 @@ public class LowLevelScoopMouseController : MonoBehaviour, IStageInitializable
 
         if (!Scoop.ScoopBody.isValid)
         {
-            Debug.LogError("LowLevelScoop is not initialized.", this);
+            Debug.LogError("Scoop is not initialized.", this);
             enabled = false;
             return;
         }
 
         if (!Bucket.BucketBody.isValid)
         {
-            Debug.LogError("LowLevelBucket is not initialized.", this);
+            Debug.LogError("Bucket is not initialized.", this);
             enabled = false;
             return;
         }

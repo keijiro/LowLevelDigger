@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.LowLevelPhysics2D;
 
-public class LowLevelBucket : MonoBehaviour, IStageInitializable
+public class Bucket : MonoBehaviour, IStageInitializable
 {
     [field: SerializeField] public Vector2 BucketSize { get; set; } = Vector2.one;
     [field: SerializeField] public float WallThickness { get; set; } = 0.05f;

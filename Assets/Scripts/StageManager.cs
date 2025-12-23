@@ -2,6 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.LowLevelPhysics2D;
 
+public interface IStageInitializable
+{
+    void InitializeStage(StageManager stage);
+}
+
 public class StageManager : MonoBehaviour
 {
     [field: SerializeField] PhysicsWorldDefinition _worldDefinition = PhysicsWorldDefinition.defaultDefinition;

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.LowLevelPhysics2D;
 
-public class LowLevelBallFill : MonoBehaviour, IStageInitializable
+public class BallFill : MonoBehaviour, IStageInitializable
 {
-    [field: SerializeField] public LowLevelBucket Bucket { get; set; }
+    [field: SerializeField] public Bucket Bucket { get; set; }
     [field: SerializeField] public int BallsPerAxis { get; set; } = 8;
     [field: SerializeField] public float BallRadius { get; set; } = 0.04f;
     [field: SerializeField] public Vector2 BallPadding { get; set; } = new(0.01f, 0.01f);
@@ -16,7 +16,7 @@ public class LowLevelBallFill : MonoBehaviour, IStageInitializable
     {
         if (Bucket == null)
         {
-            Debug.LogError("LowLevelBucket is missing.", this);
+            Debug.LogError("Bucket is missing.", this);
             enabled = false;
             return;
         }

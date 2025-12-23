@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.LowLevelPhysics2D;
 
-public class LowLevelScoop : MonoBehaviour, IStageInitializable
+public class Scoop : MonoBehaviour, IStageInitializable
 {
     [field: SerializeField] public Vector2 ScoopSize { get; set; } = new(0.7f, 0.25f);
     [field: SerializeField] public float WallThickness { get; set; } = 0.04f;
