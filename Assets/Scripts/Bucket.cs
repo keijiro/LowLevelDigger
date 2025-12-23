@@ -25,7 +25,6 @@ public class Bucket : MonoBehaviour, IStageInitializable
     void CreateBucket()
     {
         var bodyDef = PhysicsBodyDefinition.defaultDefinition;
-        bodyDef.type = PhysicsBody.BodyType.Kinematic;
         bodyDef.position = BucketOrigin;
 
         _bucketBody = PhysicsWorld.defaultWorld.CreateBody(bodyDef);
