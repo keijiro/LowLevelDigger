@@ -1,0 +1,78 @@
+using UnityEngine;
+using UnityEngine.LowLevelPhysics2D;
+
+public class LowLevelScoop : MonoBehaviour, IStageInitializable
+{
+    [field: SerializeField] public Vector2 ScoopSize { get; set; } = new(0.7f, 0.25f);
+    [field: SerializeField] public float WallThickness { get; set; } = 0.04f;
+    [field: SerializeField] public float BackWallHeight { get; set; } = 0.1f;
+    [field: SerializeField] public float HandleLength { get; set; } = 0.35f;
+    [field: SerializeField] public Vector2 SpawnOffset { get; set; } = new(0f, 0.6f);
+
+    public PhysicsBody ScoopBody => _scoopBody;
+    public Vector2 TipLocal => new(-ScoopSize.x * 0.5f, 0f);
+    public Vector2 BaseLocal => new(ScoopSize.x * 0.5f, 0f);
+
+    PhysicsBody _scoopBody;
+    (PolygonGeometry bottom, PolygonGeometry left, PolygonGeometry right, PolygonGeometry back, PolygonGeometry handle) _scoopGeometry;
+
+    public void InitializeStage(StageManager stage)
+      => CreateScoop();
+
+    void OnDestroy()
+    {
+        if (_scoopBody.isValid)
+            _scoopBody.Destroy();
+    }
+
+    void Update()
+    {
+        if (!_scoopBody.isValid)
+            return;
+
+        var scoopDebugColor = new Color(0.9f, 0.6f, 0.2f, 1f);
+        var xform = _scoopBody.transform;
+        var world = StageManager.World;
+        world.DrawGeometry(_scoopGeometry.bottom, xform, scoopDebugColor);
+        world.DrawGeometry(_scoopGeometry.left, xform, scoopDebugColor);
+        world.DrawGeometry(_scoopGeometry.right, xform, scoopDebugColor);
+        world.DrawGeometry(_scoopGeometry.back, xform, scoopDebugColor);
+        world.DrawGeometry(_scoopGeometry.handle, xform, scoopDebugColor);
+    }
+
+    void CreateScoop()
+    {
+        var bodyDef = PhysicsBodyDefinition.defaultDefinition;
+        bodyDef.type = PhysicsBody.BodyType.Dynamic;
+        bodyDef.position = (Vector2)transform.position + SpawnOffset;
+
+        _scoopBody = StageManager.World.CreateBody(bodyDef);
+
+        var size = ScoopSize;
+        var half = size * 0.5f;
+        var thickness = WallThickness;
+
+        var bottomSize = new Vector2(size.x, thickness);
+        var sideSize = new Vector2(thickness, size.y);
+        var backSize = new Vector2(size.x, BackWallHeight);
+        var handleSize = new Vector2(HandleLength, thickness);
+
+        var xformBottom = new PhysicsTransform(new Vector2(0f, -half.y + thickness * 0.5f));
+        var xformLeft = new PhysicsTransform(new Vector2(-half.x + thickness * 0.5f, 0f));
+        var xformRight = new PhysicsTransform(new Vector2(half.x - thickness * 0.5f, 0f));
+        var xformBack = new PhysicsTransform(new Vector2(0f, half.y - BackWallHeight * 0.5f));
+        var xformHandle = new PhysicsTransform(new Vector2(half.x + HandleLength * 0.5f, 0f));
+
+        _scoopGeometry.bottom = PolygonGeometry.CreateBox(bottomSize, 0f, xformBottom);
+        _scoopGeometry.left = PolygonGeometry.CreateBox(sideSize, 0f, xformLeft);
+        _scoopGeometry.right = PolygonGeometry.CreateBox(sideSize, 0f, xformRight);
+        _scoopGeometry.back = PolygonGeometry.CreateBox(backSize, 0f, xformBack);
+        _scoopGeometry.handle = PolygonGeometry.CreateBox(handleSize, 0f, xformHandle);
+
+        _scoopBody.CreateShape(_scoopGeometry.bottom, PhysicsShapeDefinition.defaultDefinition);
+        _scoopBody.CreateShape(_scoopGeometry.left, PhysicsShapeDefinition.defaultDefinition);
+        _scoopBody.CreateShape(_scoopGeometry.right, PhysicsShapeDefinition.defaultDefinition);
+        _scoopBody.CreateShape(_scoopGeometry.back, PhysicsShapeDefinition.defaultDefinition);
+        _scoopBody.CreateShape(_scoopGeometry.handle, PhysicsShapeDefinition.defaultDefinition);
+    }
+}

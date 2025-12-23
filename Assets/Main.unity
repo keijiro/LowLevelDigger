@@ -183,7 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 296814359}
-  - component: {fileID: 296814358}
+  - component: {fileID: 296814360}
   m_Layer: 0
   m_Name: Scoop
   m_TagString: Untagged
@@ -191,28 +191,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &296814358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296814357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c19ea432fa5943e9b34d5cc64408a27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LowLevelScoopController
-  <WorldController>k__BackingField: {fileID: 1622039340}
-  <TargetCamera>k__BackingField: {fileID: 1411473418}
-  <ScoopSize>k__BackingField: {x: 0.7, y: 0.25}
-  <WallThickness>k__BackingField: 0.04
-  <BackWallHeight>k__BackingField: 0.1
-  <HandleLength>k__BackingField: 0.35
-  <SpawnOffset>k__BackingField: {x: 0, y: 0.6}
-  <SpringStrength>k__BackingField: 60
-  <Damping>k__BackingField: 8
-  <MaxSpeed>k__BackingField: 8
 --- !u!4 &296814359
 Transform:
   m_ObjectHideFlags: 0
@@ -228,6 +206,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &296814360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296814357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4491d3f6287d4514a9dce8b3313f22b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LowLevelScoop
+  <ScoopSize>k__BackingField: {x: 0.7, y: 0.25}
+  <WallThickness>k__BackingField: 0.04
+  <BackWallHeight>k__BackingField: 0.1
+  <HandleLength>k__BackingField: 0.35
+  <SpawnOffset>k__BackingField: {x: 0, y: 0.6}
 --- !u!1 &751942952
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 751942954}
-  - component: {fileID: 751942953}
+  - component: {fileID: 751942955}
   m_Layer: 0
   m_Name: Bucket
   m_TagString: Untagged
@@ -245,7 +240,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &751942953
+--- !u!4 &751942954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751942952}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &751942955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,23 +264,103 @@ MonoBehaviour:
   m_GameObject: {fileID: 751942952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7fc561ab16f940d388180f4233724c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a10f59616b344f27ba461eb38db9f86, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LowLevelBucketFill
+  m_EditorClassIdentifier: Assembly-CSharp::LowLevelBucket
   <BucketSize>k__BackingField: {x: 1, y: 1}
   <WallThickness>k__BackingField: 0.05
+  <BucketOffset>k__BackingField: {x: 0, y: 0}
+--- !u!1 &767570499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 767570501}
+  - component: {fileID: 767570500}
+  m_Layer: 0
+  m_Name: Filler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &767570500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767570499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1890ff84b0d0447388e01c0ef3fda5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LowLevelBallFill
+  <Bucket>k__BackingField: {fileID: 751942955}
   <BallsPerAxis>k__BackingField: 40
   <BallRadius>k__BackingField: 0.01
   <BallPadding>k__BackingField: {x: 0.01, y: 0.01}
-  <BucketOffset>k__BackingField: {x: 0, y: 0}
-  <WorldController>k__BackingField: {fileID: 1622039340}
---- !u!4 &751942954
+--- !u!4 &767570501
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751942952}
+  m_GameObject: {fileID: 767570499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1386073514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1386073516}
+  - component: {fileID: 1386073515}
+  m_Layer: 0
+  m_Name: Scoop Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1386073515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386073514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db524d9f8a494ee9bd9baaed6253358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LowLevelScoopMouseController
+  <Scoop>k__BackingField: {fileID: 296814360}
+  <Bucket>k__BackingField: {fileID: 751942955}
+  <TargetCamera>k__BackingField: {fileID: 1411473418}
+  <MouseSpringFrequency>k__BackingField: 8
+  <MouseSpringDamping>k__BackingField: 0.7
+  <RimSpringFrequency>k__BackingField: 3
+  <RimSpringDamping>k__BackingField: 0.9
+--- !u!4 &1386073516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386073514}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -375,8 +465,8 @@ Camera:
   near clip plane: 0.1
   far clip plane: 100
   field of view: 20
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 0.8
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -418,7 +508,7 @@ GameObject:
   - component: {fileID: 1622039341}
   - component: {fileID: 1622039340}
   m_Layer: 0
-  m_Name: World
+  m_Name: Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff93a61ce831429b84b6ec0d8f26e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LowLevelWorldController
-  <WorldDefinition>k__BackingField:
+  _worldDefinition:
     m_Gravity: {x: 0, y: -9.81}
     m_SimulationType: 0
     m_SimulationSubSteps: 4
@@ -488,6 +578,11 @@ MonoBehaviour:
       contactImpulse: {r: 1, g: 0, b: 1, a: 1}
       contactFriction: {r: 1, g: 1, b: 0, a: 1}
       solverIsland: {r: 0.18431373, g: 0.30980393, b: 0.30980393, a: 1}
+  _initializers:
+  - {fileID: 751942955}
+  - {fileID: 296814360}
+  - {fileID: 1386073515}
+  - {fileID: 767570500}
 --- !u!4 &1622039341
 Transform:
   m_ObjectHideFlags: 0
@@ -511,4 +606,6 @@ SceneRoots:
   - {fileID: 1411473419}
   - {fileID: 1622039341}
   - {fileID: 751942954}
+  - {fileID: 767570501}
   - {fileID: 296814359}
+  - {fileID: 1386073516}

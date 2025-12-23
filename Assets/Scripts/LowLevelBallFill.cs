@@ -1,0 +1,82 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.LowLevelPhysics2D;
+
+public class LowLevelBallFill : MonoBehaviour, IStageInitializable
+{
+    [field: SerializeField] public LowLevelBucket Bucket { get; set; }
+    [field: SerializeField] public int BallsPerAxis { get; set; } = 8;
+    [field: SerializeField] public float BallRadius { get; set; } = 0.04f;
+    [field: SerializeField] public Vector2 BallPadding { get; set; } = new(0.01f, 0.01f);
+
+    CircleGeometry _ballGeometry;
+    readonly List<PhysicsBody> _ballBodies = new();
+
+    public void InitializeStage(StageManager stage)
+    {
+        if (Bucket == null)
+        {
+            Debug.LogError("LowLevelBucket is missing.", this);
+            enabled = false;
+            return;
+        }
+
+        CreateBalls();
+    }
+
+    void OnDestroy()
+    {
+        for (var i = 0; i < _ballBodies.Count; ++i)
+        {
+            var body = _ballBodies[i];
+            if (body.isValid)
+                body.Destroy();
+        }
+
+        _ballBodies.Clear();
+    }
+
+    void Update()
+    {
+        if (_ballBodies.Count == 0)
+            return;
+
+        var ballDebugColor = new Color(0.95f, 0.9f, 0.2f, 1f);
+        for (var i = 0; i < _ballBodies.Count; ++i)
+        {
+            var body = _ballBodies[i];
+            if (!body.isValid)
+                continue;
+
+            StageManager.World.DrawGeometry(_ballGeometry, body.transform, ballDebugColor);
+        }
+    }
+
+    void CreateBalls()
+    {
+        var innerSize = Bucket.BucketSize - new Vector2(Bucket.WallThickness * 2f, Bucket.WallThickness);
+        var innerHalf = innerSize * 0.5f;
+        var start = Bucket.BucketOrigin;
+        var min = start + new Vector2(-innerHalf.x + BallRadius + BallPadding.x, -innerHalf.y + BallRadius + BallPadding.y);
+        var step = new Vector2(
+            (innerSize.x - (BallRadius + BallPadding.x) * 2f) / Mathf.Max(1, BallsPerAxis - 1),
+            (innerSize.y - (BallRadius + BallPadding.y) * 2f) / Mathf.Max(1, BallsPerAxis - 1));
+
+        var bodyDef = PhysicsBodyDefinition.defaultDefinition;
+        bodyDef.type = PhysicsBody.BodyType.Dynamic;
+
+        var shapeDef = PhysicsShapeDefinition.defaultDefinition;
+        _ballGeometry = new CircleGeometry { radius = BallRadius };
+
+        for (var y = 0; y < BallsPerAxis; ++y)
+        {
+            for (var x = 0; x < BallsPerAxis; ++x)
+            {
+                bodyDef.position = min + new Vector2(step.x * x, step.y * y);
+                var body = StageManager.World.CreateBody(bodyDef);
+                body.CreateShape(_ballGeometry, shapeDef);
+                _ballBodies.Add(body);
+            }
+        }
+    }
+}
