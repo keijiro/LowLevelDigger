@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Keijiro
-  productName: URP Template
+  productName: Scooper
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -166,7 +166,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Standalone: com.Keijiro.URP-Template
+    Standalone: jp.keijiro.scooper
   buildNumber:
     Bratwurst: 0
     Standalone: 0
@@ -839,7 +839,7 @@ PlayerSettings:
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 1
+  webGLCompressionFormat: 0
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
@@ -863,7 +863,8 @@ PlayerSettings:
     Android: 1
     Standalone: 0
   il2cppCompilerConfiguration: {}
-  il2cppCodeGeneration: {}
+  il2cppCodeGeneration:
+    WebGL: 1
   il2cppStacktraceInformation: {}
   managedStrippingLevel:
     Android: 1
@@ -875,7 +876,7 @@ PlayerSettings:
     PS4: 1
     PS5: 1
     QNX: 1
-    WebGL: 1
+    WebGL: 3
     Windows Store Apps: 1
     XboxOne: 1
     iPhone: 1
@@ -892,14 +893,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: URP-Template
+  metroPackageName: Scooper
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: URP-Template
+  metroApplicationDescription: Scooper
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0

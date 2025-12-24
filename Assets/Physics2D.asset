@@ -80,7 +80,7 @@ MonoBehaviour:
     - 
   m_UseFullLayers: 0
   m_PhysicsWorldDefinition:
-    m_Gravity: {x: 0, y: -9.81}
+    m_Gravity: {x: 0, y: -20}
     m_SimulationType: 0
     m_SimulationSubSteps: 4
     m_SimulationWorkers: 64
