@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BombDetonationTester
   <PaydirtManager>k__BackingField: {fileID: 767570500}
-  <DetonationImpulseThreshold>k__BackingField: 10
+  <DetonationSpeedThreshold>k__BackingField: 10
 --- !u!4 &1079328226
 Transform:
   m_ObjectHideFlags: 0

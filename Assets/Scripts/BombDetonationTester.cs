@@ -6,7 +6,7 @@ using UnityEngine.LowLevelPhysics2D;
 public class BombDetonationTester : MonoBehaviour
 {
     [field:SerializeField] public PaydirtManager PaydirtManager { get; set; }
-    [field:SerializeField] public float DetonationImpulseThreshold { get; set; } = 1f;
+    [field:SerializeField] public float DetonationSpeedThreshold { get; set; } = 1f;
 
     readonly HashSet<PhysicsBody> _detonatedBodies = new();
 
@@ -22,27 +22,27 @@ public class BombDetonationTester : MonoBehaviour
             if (!body.isValid || _detonatedBodies.Contains(body))
                 continue;
 
-            var maxImpulse = GetMaxImpulse(body);
-            if (maxImpulse < DetonationImpulseThreshold)
+            var maxSpeed = GetMaxNormalSpeed(body);
+            if (maxSpeed < DetonationSpeedThreshold)
                 continue;
 
             _detonatedBodies.Add(body);
-            Debug.Log($"Bomb detonated: impulse={maxImpulse:0.###}", this);
+            Debug.Log($"Bomb detonated: normalSpeed={maxSpeed:0.###}", this);
         }
     }
 
-    float GetMaxImpulse(PhysicsBody body)
+    float GetMaxNormalSpeed(PhysicsBody body)
     {
-        var maxImpulse = 0f;
+        var maxSpeed = 0f;
         using var contacts = body.GetContacts(Allocator.Temp);
         for (var i = 0; i < contacts.Length; ++i)
         {
             var manifold = contacts[i].manifold;
             var points = manifold.points;
             for (var p = 0; p < manifold.pointCount; ++p)
-                maxImpulse = Mathf.Max(maxImpulse, points[p].totalNormalImpulse);
+                maxSpeed = Mathf.Max(maxSpeed, Mathf.Abs(points[p].normalVelocity));
         }
 
-        return maxImpulse;
+        return maxSpeed;
     }
 }
