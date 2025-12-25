@@ -86,5 +86,6 @@ public class BucketController : MonoBehaviour
     {
         _state = FlushState.Opening;
         _targetAngle = _openAngle;
+        ConsoleManager.AddLine("Flush started.");
     }
 }

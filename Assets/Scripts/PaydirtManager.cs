@@ -215,5 +215,6 @@ public class PaydirtManager : MonoBehaviour, IStageInitializable
             _pendingBodies.Enqueue(_poolBodies[i]);
 
         _poolBodies.Clear();
+        ConsoleManager.AddLine("Paydirt injection queued.");
     }
 }
