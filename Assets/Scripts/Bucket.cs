@@ -7,11 +7,20 @@ public class Bucket : MonoBehaviour, IStageInitializable
     [field:SerializeField] public float WallThickness { get; set; } = 0.05f;
     [field:SerializeField] public Vector2 BucketOffset { get; set; }
     [field:SerializeField] public float LeftWallHeightRatio { get; set; } = 1f;
-    [field:SerializeField] public float BottomOpenAngle { get; set; } = 60f;
-    [field:SerializeField] public float BottomOpenSpeed { get; set; } = 180f;
+
+    [SerializeField] float _bottomAngle;
 
     public PhysicsBody BucketBody => _bucketBody;
     public Vector2 BucketOrigin => (Vector2)transform.position + BucketOffset;
+    public float BottomAngle
+    {
+        get => _bottomAngle;
+        set
+        {
+            _bottomAngle = value;
+            UpdateBottomTransforms();
+        }
+    }
 
     PhysicsBody _bucketBody;
     PhysicsBody _bottomLeftBody;
@@ -19,8 +28,6 @@ public class Bucket : MonoBehaviour, IStageInitializable
     (PolygonGeometry bottom, PolygonGeometry left, PolygonGeometry right) _bucketGeometry;
     Vector2 _bottomLeftHinge;
     Vector2 _bottomRightHinge;
-    float _bottomAngle;
-    float _bottomTargetAngle;
 
     public void InitializeStage(StageManager stage)
       => CreateBucket();
@@ -66,6 +73,7 @@ public class Bucket : MonoBehaviour, IStageInitializable
         _bucketBody.CreateShape(_bucketGeometry.right, PhysicsShapeDefinition.defaultDefinition);
 
         CreateBottomBodies(xformBottom.position, bottomSize, bottomHalfWidth, thickness);
+        UpdateBottomTransforms();
     }
 
     void CreateBottomBodies(Vector2 bottomCenter, Vector2 bottomSize, float bottomHalfWidth, float thickness)
@@ -93,21 +101,11 @@ public class Bucket : MonoBehaviour, IStageInitializable
         _bottomRightBody.CreateShape(rightGeometry, PhysicsShapeDefinition.defaultDefinition);
     }
 
-    void Update()
+    void UpdateBottomTransforms()
     {
         if (!_bottomLeftBody.isValid || !_bottomRightBody.isValid)
             return;
 
-        var nextAngle = Mathf.MoveTowards(_bottomAngle, _bottomTargetAngle, BottomOpenSpeed * Time.deltaTime);
-        if (Mathf.Approximately(nextAngle, _bottomAngle))
-            return;
-
-        _bottomAngle = nextAngle;
-        UpdateBottomTransforms();
-    }
-
-    void UpdateBottomTransforms()
-    {
         var radians = _bottomAngle * Mathf.Deg2Rad;
         var leftRotation = new PhysicsRotate(-radians);
         var rightRotation = new PhysicsRotate(radians);
@@ -120,10 +118,4 @@ public class Bucket : MonoBehaviour, IStageInitializable
         _bottomRightBody.linearVelocity = Vector2.zero;
         _bottomRightBody.angularVelocity = 0f;
     }
-
-    public void Open()
-      => _bottomTargetAngle = BottomOpenAngle;
-
-    public void Close()
-      => _bottomTargetAngle = 0f;
 }
