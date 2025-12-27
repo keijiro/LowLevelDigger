@@ -1020,6 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LowLevelWorldController
   _ui: {fileID: 231048556}
   _paydirtManager: {fileID: 767570500}
+  _scoopController: {fileID: 1657676521}
   _bucketAnimation: {fileID: 247061325}
   _bucketCloseWait: 2
 --- !u!4 &1622039341
@@ -1174,16 +1175,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db524d9f8a494ee9bd9baaed6253358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LowLevelScoopMouseController
+  _pickerSpring: 1
+  _anchorSpring: 0.6
+  _rewindSpring: 8
+  _damping: 1
+  _scoopBody: {fileID: 1657676518}
+  _scoopTip: {fileID: 867241079}
+  _scoopRim: {fileID: 1652686077}
   _anchorBody: {fileID: 850060230}
   _anchorPoint: {fileID: 534811468}
-  _scoopBody: {fileID: 1657676518}
-  _mouseAnchor: {fileID: 867241079}
-  _rimAnchor: {fileID: 1652686077}
   _targetCamera: {fileID: 1411473418}
-  <MouseSpringFrequency>k__BackingField: 1.3
-  <MouseSpringDamping>k__BackingField: 1.2
-  <RimSpringFrequency>k__BackingField: 0.4
-  <RimSpringDamping>k__BackingField: 2
 --- !u!1 &1763995851
 GameObject:
   m_ObjectHideFlags: 0

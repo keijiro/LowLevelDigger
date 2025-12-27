@@ -4,98 +4,124 @@ using UnityEngine.LowLevelPhysics2D;
 
 public class ScoopController : MonoBehaviour
 {
+    #region Editable Fields
+
+    [Space]
+    [SerializeField] float _pickerSpring = 2f;
+    [SerializeField] float _anchorSpring = 2f;
+    [SerializeField] float _rewindSpring = 2f;
+    [SerializeField] float _damping = 1;
+    [Space]
+    [SerializeField] DynamicBodyBridge _scoopBody = null;
+    [SerializeField] Transform _scoopTip = null;
+    [SerializeField] Transform _scoopRim = null;
+    [Space]
     [SerializeField] StaticBodyBridge _anchorBody = null;
     [SerializeField] Transform _anchorPoint = null;
-    [SerializeField] DynamicBodyBridge _scoopBody = null;
-    [SerializeField] Transform _mouseAnchor = null;
-    [SerializeField] Transform _rimAnchor = null;
+    [Space]
     [SerializeField] Camera _targetCamera = null;
-    [field:SerializeField] public float MouseSpringFrequency { get; set; } = 8f;
-    [field:SerializeField] public float MouseSpringDamping { get; set; } = 0.7f;
-    [field:SerializeField] public float RimSpringFrequency { get; set; } = 3f;
-    [field:SerializeField] public float RimSpringDamping { get; set; } = 0.9f;
 
-    PhysicsBody _mouseBody;
-    PhysicsJoint _mouseJoint;
-    PhysicsJoint _rimJoint;
+    #endregion
+
+    #region Public Methods
+
+    public void StartRewind()
+      => SetAnchorSpring(_rewindSpring);
+
+    public void EndRewind()
+      => SetAnchorSpring(_anchorSpring);
+
+    #endregion
+
+    #region MonoBehaviour Implementation
 
     void Start()
     {
-        CreateMouseBody();
-        CreateRimJoint();
+        CreatePickerBody();
+        CreatePickerJoint();
+        CreateAnchorJoint();
     }
 
     void OnDestroy()
     {
-        if (_mouseJoint.isValid)
-            _mouseJoint.Destroy();
-
-        if (_mouseBody.isValid)
-            _mouseBody.Destroy();
+        _anchorJoint.Destroy();
+        _pickerJoint.Destroy();
+        _pickerBody.Destroy();
     }
 
     void Update()
     {
-        if (!_mouseBody.isValid)
-            return;
-
         var pointer = Pointer.current;
-        if (pointer == null)
-            return;
 
         if (pointer.press.isPressed)
         {
-            if (!_mouseJoint.isValid)
-                CreateMouseJoint();
-
-            var target = (Vector2)_targetCamera.ScreenToWorldPoint(pointer.position.value);
-            var mouseTransform = _mouseBody.transform;
-            mouseTransform.position = target;
-            _mouseBody.transform = mouseTransform;
-            _mouseBody.linearVelocity = Vector2.zero;
-            _mouseBody.angularVelocity = 0f;
+            var pos = pointer.position.value;
+            var xform = _pickerBody.transform;
+            xform.position = _targetCamera.ScreenToWorldPoint(pos);
+            _pickerBody.transform = xform;
         }
-        else if (_mouseJoint.isValid)
-            _mouseJoint.Destroy();
     }
 
-    void CreateMouseBody()
+    #endregion
+
+    #region Physics Handling
+
+    PhysicsBody _pickerBody;
+    PhysicsJoint _pickerJoint;
+    PhysicsJoint _anchorJoint;
+
+    void CreatePickerBody()
     {
         var bodyDef = PhysicsBodyDefinition.defaultDefinition;
         bodyDef.type = PhysicsBody.BodyType.Kinematic;
         bodyDef.position = _scoopBody.Body.transform.position;
-        _mouseBody = PhysicsWorld.defaultWorld.CreateBody(bodyDef);
+        _pickerBody = PhysicsWorld.defaultWorld.CreateBody(bodyDef);
     }
 
-    void CreateMouseJoint()
+    void CreatePickerJoint()
     {
         var jointDef = PhysicsDistanceJointDefinition.defaultDefinition;
         jointDef.bodyA = _scoopBody.Body;
-        jointDef.bodyB = _mouseBody;
-        jointDef.localAnchorA = new PhysicsTransform(
-            jointDef.bodyA.GetLocalPoint(_mouseAnchor.position));
+        jointDef.bodyB = _pickerBody;
+
+        var scoopTip = jointDef.bodyA.GetLocalPoint(_scoopTip.position);
+        jointDef.localAnchorA = new PhysicsTransform(scoopTip);
         jointDef.localAnchorB = PhysicsTransform.identity;
-        jointDef.distance = 0f;
+
+        jointDef.distance = 0;
         jointDef.enableSpring = true;
-        jointDef.springFrequency = MouseSpringFrequency;
-        jointDef.springDamping = MouseSpringDamping;
-        _mouseJoint = PhysicsWorld.defaultWorld.CreateJoint(jointDef);
+        jointDef.springFrequency = _pickerSpring;
+        jointDef.springDamping = _damping;
+
+        _pickerJoint = PhysicsWorld.defaultWorld.CreateJoint(jointDef);
     }
 
-    void CreateRimJoint()
+    void CreateAnchorJoint()
     {
         var jointDef = PhysicsDistanceJointDefinition.defaultDefinition;
         jointDef.bodyA = _scoopBody.Body;
         jointDef.bodyB = _anchorBody.Body;
-        jointDef.localAnchorA = new PhysicsTransform(
-            jointDef.bodyA.GetLocalPoint(_rimAnchor.position));
-        jointDef.localAnchorB = new PhysicsTransform(
-            jointDef.bodyB.GetLocalPoint(_anchorPoint.position));
-        jointDef.distance = 0f;
+
+        var scoopRim = jointDef.bodyA.GetLocalPoint(_scoopRim.position);
+        var anchor = jointDef.bodyB.GetLocalPoint(_anchorPoint.position);
+        jointDef.localAnchorA = new PhysicsTransform(scoopRim);
+        jointDef.localAnchorB = new PhysicsTransform(anchor);
+
+        jointDef.distance = 0;
         jointDef.enableSpring = true;
-        jointDef.springFrequency = RimSpringFrequency;
-        jointDef.springDamping = RimSpringDamping;
+        jointDef.springFrequency = _anchorSpring;
+        jointDef.springDamping = _damping;
         jointDef.collideConnected = true;
-        _rimJoint = PhysicsWorld.defaultWorld.CreateJoint(jointDef);
+
+        _anchorJoint = PhysicsWorld.defaultWorld.CreateJoint(jointDef);
     }
+
+    void SetAnchorSpring(float frequency)
+    {
+        var joint = (PhysicsDistanceJoint)_anchorJoint;
+        joint.springFrequency = frequency;
+        joint.springDamping = _damping;
+    }
+
+    #endregion
 }
