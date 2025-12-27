@@ -13,7 +13,7 @@ public class StaticBodyBridge : MonoBehaviour
 
     #region Public Properties
 
-    public PhysicsBody Body => _body;
+    public PhysicsBody Body { get; private set; }
 
     #endregion
 
@@ -37,9 +37,6 @@ public class StaticBodyBridge : MonoBehaviour
 
     #region Physics Body Management
 
-    CompositeShapeBuilder _shapeBuilder;
-    PhysicsBody _body;
-
     void CreateBody()
     {
         var bodyDef = PhysicsBodyDefinition.defaultDefinition;
@@ -47,53 +44,41 @@ public class StaticBodyBridge : MonoBehaviour
                                       PhysicsBody.BodyType.Static;
         bodyDef.position = transform.position;
 
-        _body = PhysicsWorld.defaultWorld.CreateBody(bodyDef);
+        Body = PhysicsWorld.defaultWorld.CreateBody(bodyDef);
 
-        var definition = PhysicsShapeDefinition.defaultDefinition;
+        var shapeDef = PhysicsShapeDefinition.defaultDefinition;
 
         var category = new PhysicsMask((int)_category);
         var mask = PhysicsMask.All;
         mask.ResetBit((int)_ignore);
-        definition.contactFilter = new PhysicsShape.ContactFilter(category, mask);
+        shapeDef.contactFilter = new PhysicsShape.ContactFilter(category, mask);
 
-        _shapeBuilder.CreateShapes(_body, definition);
+        GetComponent<CompositeShapeBuilder>().CreateShapes(Body, shapeDef);
     }
 
     void ApplyTransform()
     {
         var rot = new PhysicsRotate(transform.eulerAngles.z * Mathf.Deg2Rad);
         var xform = new PhysicsTransform(transform.position, rot);
-        _body.SetAndWriteTransform(xform);
+        Body.SetAndWriteTransform(xform);
     }
 
     #endregion
 
     #region MonoBehaviour Implementation
 
-    void Awake()
-      => _shapeBuilder = GetComponent<CompositeShapeBuilder>();
-
     void Start()
     {
-        if (_shapeBuilder == null)
-            return;
-
         CreateBody();
         ApplyTransform();
         CacheTransform();
     }
 
     void OnDestroy()
-    {
-        if (_body.isValid)
-            _body.Destroy();
-    }
+      => Body.Destroy();
 
     void FixedUpdate()
     {
-        if (!_body.isValid)
-            return;
-
         if (IsPositionChanged || IsRotationChanged)
         {
             ApplyTransform();

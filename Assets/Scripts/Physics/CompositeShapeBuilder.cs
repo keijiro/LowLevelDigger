@@ -63,12 +63,11 @@ public class CompositeShapeBuilder : MonoBehaviour
     {
         var sides = Mathf.Clamp(element.Sides, 3, MaxPolygonSides);
         var vertices = new Vector2[sides];
-        var rot = element.Rotation * Mathf.Deg2Rad;
         for (var i = 0; i < sides; ++i)
         {
-            var r = Mathf.PI * 2 * i / sides;
+            var r = (360f * i / sides + element.Rotation) * Mathf.Deg2Rad;
             var offs = new Vector2(Mathf.Cos(r), Mathf.Sin(r)) * element.Radius;
-            vertices[i] = element.Center + RotateVector(offs, rot);
+            vertices[i] = element.Center + offs;
         }
         body.CreateShape(PolygonGeometry.Create(vertices, 0), def);
     }
@@ -120,22 +119,15 @@ public class CompositeShapeBuilder : MonoBehaviour
     void DrawPolygonGizmo(Vector2 center, float radius, int sides, float rotation)
     {
         var count = Mathf.Clamp(sides, 3, MaxPolygonSides);
-        var rot = rotation * Mathf.Deg2Rad;
-        var prev = center + RotateVector(new Vector2(1, 0) * radius, rot);
-
+        var r0 = rotation * Mathf.Deg2Rad;
+        var prev = center + new Vector2(Mathf.Cos(r0), Mathf.Sin(r0)) * radius;
         for (var i = 1; i <= count; ++i)
         {
-            var angle = Mathf.PI * 2 * i / count;
-            var next = center + RotateVector(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius, rot);
+            var r = (360f * i / count + rotation) * Mathf.Deg2Rad;
+            var next = center + new Vector2(Mathf.Cos(r), Mathf.Sin(r)) * radius;
             Gizmos.DrawLine(prev, next);
             prev = next;
         }
-    }
-
-    Vector2 RotateVector(Vector2 v, float radians)
-    {
-        var (sin, cos) = (Mathf.Sin(radians), Mathf.Cos(radians));
-        return new Vector2(v.x * cos - v.y * sin, v.x * sin + v.y * cos);
     }
 
     #endregion
