@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.LowLevelPhysics2D;
 
 public class ScoopController : MonoBehaviour
@@ -18,6 +17,7 @@ public class ScoopController : MonoBehaviour
     [SerializeField] Transform _anchorPoint = null;
     [Space]
     [SerializeField] Camera _targetCamera = null;
+    [SerializeField] InputHandler _input = null;
 
     #endregion
 
@@ -60,17 +60,15 @@ public class ScoopController : MonoBehaviour
 
     void Update()
     {
-        var pointer = Pointer.current;
-
-        UpdatePickerBody(pointer);
+        UpdatePickerBody(_input.Position);
 
         if (!_scoop.body.isValid) return;
 
-        if (pointer.press.wasPressedThisFrame)
+        if (_input.IsPressed)
         {
-            CreatePickerJoint();
+            if (!_pickerJoint.isValid) CreatePickerJoint();
         }
-        else if (pointer.press.wasReleasedThisFrame)
+        else
         {
             if (_pickerJoint.isValid) _pickerJoint.Destroy();
         }
@@ -90,9 +88,8 @@ public class ScoopController : MonoBehaviour
         _pickerBody = PhysicsWorld.defaultWorld.CreateBody(bodyDef);
     }
 
-    void UpdatePickerBody(Pointer pointer)
+    void UpdatePickerBody(Vector2 pos)
     {
-        var pos = pointer.position.value;
         var xform = _pickerBody.transform;
         xform.position = _targetCamera.ScreenToWorldPoint(pos);
         _pickerBody.transform = xform;

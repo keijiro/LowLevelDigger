@@ -624,6 +624,7 @@ MonoBehaviour:
   _anchorBody: {fileID: 850060230}
   _anchorPoint: {fileID: 534811468}
   _targetCamera: {fileID: 1411473418}
+  _input: {fileID: 1622039344}
 --- !u!4 &1054568097
 Transform:
   m_ObjectHideFlags: 0
@@ -846,6 +847,7 @@ GameObject:
   - component: {fileID: 1622039340}
   - component: {fileID: 1622039342}
   - component: {fileID: 1622039343}
+  - component: {fileID: 1622039344}
   m_Layer: 0
   m_Name: Stage Manager
   m_TagString: Untagged
@@ -914,6 +916,19 @@ MonoBehaviour:
   _gemPrefabs:
   - {fileID: 6709701874039455330, guid: 81f46d2a89ba347088508248a58b9cbc, type: 3}
   - {fileID: 5852331292753208148, guid: 8f3bc1c4ad80347b5b4b657cb7b6841b, type: 3}
+--- !u!114 &1622039344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622039339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b19c72c898c24b34a85b71853506b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputHandler
+  _ui: {fileID: 231048556}
 --- !u!1 &1763995851
 GameObject:
   m_ObjectHideFlags: 0
