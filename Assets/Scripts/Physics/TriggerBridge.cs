@@ -65,15 +65,17 @@ public class TriggerBridge : MonoBehaviour
 
     #region MonoBehaviour Implementation
 
-    void Start()
+    void OnEnable()
     {
-        CreateBody();
+        if (!Body.isValid) CreateBody();
         ApplyTransform();
         CacheTransform();
     }
 
     void OnDestroy()
-      => Body.Destroy();
+    {
+        if (Body.isValid) Body.Destroy();
+    }
 
     void FixedUpdate()
     {

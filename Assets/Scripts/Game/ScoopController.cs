@@ -9,12 +9,10 @@ public class ScoopController : MonoBehaviour
     [Space]
     [SerializeField] float _pickerSpring = 2f;
     [SerializeField] float _anchorSpring = 2f;
-    [SerializeField] float _rewindSpring = 2f;
     [SerializeField] float _damping = 1;
     [Space]
-    [SerializeField] DynamicBodyBridge _scoopBody = null;
-    [SerializeField] Transform _scoopTip = null;
-    [SerializeField] Transform _scoopRim = null;
+    [SerializeField] GameObject _scoopPrefab = null;
+    [SerializeField] SpoutPositionProvider _spout = null;
     [Space]
     [SerializeField] StaticBodyBridge _anchorBody = null;
     [SerializeField] Transform _anchorPoint = null;
@@ -23,43 +21,35 @@ public class ScoopController : MonoBehaviour
 
     #endregion
 
-    #region Public Methods
-
-    public void StartRewind()
-      => SetAnchorSpring(_rewindSpring);
-
-    public void EndRewind()
-      => SetAnchorSpring(_anchorSpring);
-
-    #endregion
-
     #region MonoBehaviour Implementation
 
     void Start()
     {
         CreatePickerBody();
-        CreatePickerJoint();
-        CreateAnchorJoint();
     }
 
     void OnDestroy()
     {
-        _anchorJoint.Destroy();
-        _pickerJoint.Destroy();
-        _pickerBody.Destroy();
+        if (_anchorJoint.isValid)
+            _anchorJoint.Destroy();
+
+        if (_pickerJoint.isValid)
+            _pickerJoint.Destroy();
+
+        if (_pickerBody.isValid)
+            _pickerBody.Destroy();
     }
 
     void Update()
     {
         var pointer = Pointer.current;
+        if (pointer == null)
+            return;
 
-        if (pointer.press.isPressed)
-        {
-            var pos = pointer.position.value;
-            var xform = _pickerBody.transform;
-            xform.position = _targetCamera.ScreenToWorldPoint(pos);
-            _pickerBody.transform = xform;
-        }
+        if (_pickerBody.isValid)
+            UpdatePickerBody(pointer);
+
+        UpdatePickerJoint(pointer);
     }
 
     #endregion
@@ -69,17 +59,36 @@ public class ScoopController : MonoBehaviour
     PhysicsBody _pickerBody;
     PhysicsJoint _pickerJoint;
     PhysicsJoint _anchorJoint;
+    DynamicBodyBridge _scoopBody;
+    Transform _scoopTip;
+    Transform _scoopRim;
+
+    public void ThrowScoopInstance()
+    {
+        if (_anchorJoint.isValid)
+            _anchorJoint.Destroy();
+
+        if (_pickerJoint.isValid)
+            _pickerJoint.Destroy();
+
+        _scoopBody = null;
+        _scoopTip = null;
+        _scoopRim = null;
+    }
 
     void CreatePickerBody()
     {
         var bodyDef = PhysicsBodyDefinition.defaultDefinition;
         bodyDef.type = PhysicsBody.BodyType.Kinematic;
-        bodyDef.position = _scoopBody.Body.transform.position;
+        bodyDef.position = transform.position;
         _pickerBody = PhysicsWorld.defaultWorld.CreateBody(bodyDef);
     }
 
     void CreatePickerJoint()
     {
+        if (_scoopBody == null || _scoopTip == null)
+            return;
+
         var jointDef = PhysicsDistanceJointDefinition.defaultDefinition;
         jointDef.bodyA = _scoopBody.Body;
         jointDef.bodyB = _pickerBody;
@@ -98,6 +107,9 @@ public class ScoopController : MonoBehaviour
 
     void CreateAnchorJoint()
     {
+        if (_scoopBody == null || _scoopRim == null)
+            return;
+
         var jointDef = PhysicsDistanceJointDefinition.defaultDefinition;
         jointDef.bodyA = _scoopBody.Body;
         jointDef.bodyB = _anchorBody.Body;
@@ -116,11 +128,52 @@ public class ScoopController : MonoBehaviour
         _anchorJoint = PhysicsWorld.defaultWorld.CreateJoint(jointDef);
     }
 
-    void SetAnchorSpring(float frequency)
+    void UpdatePickerBody(Pointer pointer)
     {
-        var joint = (PhysicsDistanceJoint)_anchorJoint;
-        joint.springFrequency = frequency;
-        joint.springDamping = _damping;
+        var pos = pointer.position.value;
+        var xform = _pickerBody.transform;
+        xform.position = _targetCamera.ScreenToWorldPoint(pos);
+        _pickerBody.transform = xform;
+        _pickerBody.linearVelocity = Vector2.zero;
+        _pickerBody.angularVelocity = 0f;
+    }
+
+    void UpdatePickerJoint(Pointer pointer)
+    {
+        if (_scoopBody == null)
+            return;
+
+        if (pointer.press.wasPressedThisFrame)
+        {
+            CreatePickerJoint();
+        }
+        else if (pointer.press.wasReleasedThisFrame && _pickerJoint.isValid)
+            _pickerJoint.Destroy();
+    }
+
+    public void SpawnScoopInstance()
+    {
+        EnsureSpout();
+        if (_scoopPrefab == null)
+            return;
+
+        var position = _spout != null ? _spout.GetPosition() : (Vector2)transform.position;
+        var instance = Instantiate(_scoopPrefab, position, transform.rotation);
+
+        _scoopBody = instance.GetComponent<DynamicBodyBridge>();
+        _scoopTip = instance.transform.Find("Anchor Tip");
+        _scoopRim = instance.transform.Find("Anchor Rim");
+
+        if (_scoopBody == null)
+            return;
+
+        CreateAnchorJoint();
+    }
+
+    void EnsureSpout()
+    {
+        if (_spout == null)
+            _spout = GetComponent<SpoutPositionProvider>();
     }
 
     #endregion

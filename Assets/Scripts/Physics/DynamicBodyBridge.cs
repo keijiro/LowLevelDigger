@@ -55,14 +55,16 @@ public class DynamicBodyBridge : MonoBehaviour
 
     #region MonoBehaviour Implementation
 
-    void Start()
+    void OnEnable()
     {
-        CreateBody();
+        if (!Body.isValid) CreateBody();
         SyncTransform();
     }
 
-    void OnDestroy()
-      => Body.Destroy();
+    void OnDisable()
+    {
+        if (Body.isValid) Body.Destroy();
+    }
 
     void FixedUpdate()
       => SyncTransform();

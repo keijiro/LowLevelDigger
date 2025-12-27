@@ -587,7 +587,7 @@ MonoBehaviour:
     Radius: 0
     Sides: 0
     Scale: {x: 0.5, y: 16}
---- !u!1 &867241078
+--- !u!1 &1054568095
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -595,28 +595,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 867241079}
+  - component: {fileID: 1054568097}
+  - component: {fileID: 1054568096}
   m_Layer: 0
-  m_Name: Anchor Tip
+  m_Name: Scoop Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &867241079
+--- !u!114 &1054568096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054568095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db524d9f8a494ee9bd9baaed6253358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LowLevelScoopMouseController
+  _pickerSpring: 1
+  _anchorSpring: 0.6
+  _damping: 1
+  _scoopPrefab: {fileID: 2647266654507706872, guid: eb2059886b3294296886829e8074bc88, type: 3}
+  _spout: {fileID: 409404947}
+  _anchorBody: {fileID: 850060230}
+  _anchorPoint: {fileID: 534811468}
+  _targetCamera: {fileID: 1411473418}
+--- !u!4 &1054568097
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867241078}
+  m_GameObject: {fileID: 1054568095}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.75, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1657676520}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1411473415
 GameObject:
@@ -846,7 +867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LowLevelWorldController
   _ui: {fileID: 231048556}
   _paydirtManager: {fileID: 767570500}
-  _scoopController: {fileID: 1657676521}
+  _scoopController: {fileID: 1054568096}
   _bucketAnimation: {fileID: 247061325}
   _bucketCloseWait: 2
 --- !u!4 &1622039341
@@ -888,146 +909,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc69acd8c1194d0b83554b7c09d933a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawner
+  _spout: {fileID: 409404947}
   _bombPrefab: {fileID: 4986474474163704454, guid: d4120b3de6f9f48418ee4afa66cb60c7, type: 3}
   _gemPrefabs:
   - {fileID: 6709701874039455330, guid: 81f46d2a89ba347088508248a58b9cbc, type: 3}
   - {fileID: 5852331292753208148, guid: 8f3bc1c4ad80347b5b4b657cb7b6841b, type: 3}
-  _spout: {fileID: 409404947}
---- !u!1 &1652686076
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1652686077}
-  m_Layer: 0
-  m_Name: Anchor Neck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1652686077
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1652686076}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1657676520}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1657676517
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1657676520}
-  - component: {fileID: 1657676521}
-  - component: {fileID: 1657676519}
-  - component: {fileID: 1657676518}
-  m_Layer: 0
-  m_Name: Scoop
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1657676518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657676517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c304d9d761c1a4bd8a64ff59da9d0418, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DynamicBodyBridge
-  _density: 1
-  _category: 1
-  _ignore: 0
---- !u!114 &1657676519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657676517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae958a19ea3b0456c8f724fc19319ee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CompositeShapeBuilder
-  _shapes:
-  - Type: 2
-    Center: {x: 0, y: 0}
-    Rotation: 0
-    Radius: 0
-    Sides: 0
-    Scale: {x: 0.3, y: 1.5}
-  - Type: 2
-    Center: {x: -1.42, y: -0.27}
-    Rotation: -11
-    Radius: 0
-    Sides: 0
-    Scale: {x: 3.12, y: 0.3}
-  - Type: 2
-    Center: {x: 1.15, y: 0}
-    Rotation: 0
-    Radius: 0
-    Sides: 0
-    Scale: {x: 2, y: 0.3}
---- !u!4 &1657676520
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657676517}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1652686077}
-  - {fileID: 867241079}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1657676521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657676517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2db524d9f8a494ee9bd9baaed6253358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LowLevelScoopMouseController
-  _pickerSpring: 1
-  _anchorSpring: 0.6
-  _rewindSpring: 8
-  _damping: 1
-  _scoopBody: {fileID: 1657676518}
-  _scoopTip: {fileID: 867241079}
-  _scoopRim: {fileID: 1652686077}
-  _anchorBody: {fileID: 850060230}
-  _anchorPoint: {fileID: 534811468}
-  _targetCamera: {fileID: 1411473418}
 --- !u!1 &1763995851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,7 +988,7 @@ SceneRoots:
   - {fileID: 231048557}
   - {fileID: 1411473419}
   - {fileID: 1622039341}
+  - {fileID: 1054568097}
   - {fileID: 767570501}
   - {fileID: 247061324}
-  - {fileID: 1657676520}
   - {fileID: 250283309}

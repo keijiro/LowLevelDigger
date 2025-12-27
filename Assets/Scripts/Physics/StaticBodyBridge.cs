@@ -67,15 +67,17 @@ public class StaticBodyBridge : MonoBehaviour
 
     #region MonoBehaviour Implementation
 
-    void Start()
+    void OnEnable()
     {
-        CreateBody();
+        if (!Body.isValid) CreateBody();
         ApplyTransform();
         CacheTransform();
     }
 
-    void OnDestroy()
-      => Body.Destroy();
+    void OnDisable()
+    {
+        if (Body.isValid) Body.Destroy();
+    }
 
     void FixedUpdate()
     {
