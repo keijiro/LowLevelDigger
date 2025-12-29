@@ -172,6 +172,15 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "jp.keijiro.kino.post-processing.eight.universal": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "17.0.0"
+      },
+      "url": "https://registry.npmjs.com"
+    },
     "jp.keijiro.klutter-tools": {
       "version": "2.4.4",
       "depth": 0,

@@ -912,6 +912,7 @@ GameObject:
   - component: {fileID: 1411473419}
   - component: {fileID: 1411473418}
   - component: {fileID: 1411473416}
+  - component: {fileID: 1411473420}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1029,6 +1030,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1411473420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411473415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e0db63043084bac956b48e63518694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: KinoEight.Runtime::Kino.PostProcessing.Eight.Universal.EightColorController
+  <Color1>k__BackingField: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 0}
+  <Color2>k__BackingField: {r: 0.4716981, g: 0.1594767, b: 0.08232467, a: 0}
+  <Color3>k__BackingField: {r: 1, g: 0.595886, b: 0.24056602, a: 0}
+  <Color4>k__BackingField: {r: 0.3443396, g: 1, b: 0.98601013, a: 0}
+  <Color5>k__BackingField: {r: 0, g: 0.030925525, b: 0.5943396, a: 0}
+  <Color6>k__BackingField: {r: 0, g: 1, b: 0.4412079, a: 0}
+  <Color7>k__BackingField: {r: 0.017475525, g: 0.5283019, b: 0, a: 0}
+  <Color8>k__BackingField: {r: 1, g: 1, b: 1, a: 0}
+  Dithering: 0.333333
+  Downsampling: 4
+  Opacity: 0.6
+  _shader: {fileID: -6465566751694194690, guid: 11e94cd5c3fe34771a02e77528668f69, type: 3}
 --- !u!1 &1472358975
 GameObject:
   m_ObjectHideFlags: 0
