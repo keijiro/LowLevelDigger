@@ -1155,18 +1155,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e0db63043084bac956b48e63518694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: KinoEight.Runtime::Kino.PostProcessing.Eight.Universal.EightColorController
-  <Color1>k__BackingField: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 0}
-  <Color2>k__BackingField: {r: 0.4716981, g: 0.1594767, b: 0.08232467, a: 0}
-  <Color3>k__BackingField: {r: 1, g: 0.595886, b: 0.24056602, a: 0}
-  <Color4>k__BackingField: {r: 0.3443396, g: 1, b: 0.98601013, a: 0}
-  <Color5>k__BackingField: {r: 0, g: 0.030925525, b: 0.5943396, a: 0}
-  <Color6>k__BackingField: {r: 0, g: 1, b: 0.4412079, a: 0}
-  <Color7>k__BackingField: {r: 0.017475525, g: 0.5283019, b: 0, a: 0}
+  <Color1>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Color2>k__BackingField: {r: 0.11372549, g: 0.17254902, b: 0.3254902, a: 1}
+  <Color3>k__BackingField: {r: 0.49411765, g: 0.14509805, b: 0.3254902, a: 1}
+  <Color4>k__BackingField: {r: 0.007843138, g: 0.5294118, b: 0.31764707, a: 1}
+  <Color5>k__BackingField: {r: 0.67058825, g: 0.32156864, b: 0.21176471, a: 1}
+  <Color6>k__BackingField: {r: 0.37254903, g: 0.34509805, b: 0.30980393, a: 1}
+  <Color7>k__BackingField: {r: 0.7607843, g: 0.7647059, b: 0.78039217, a: 1}
   <Color8>k__BackingField: {r: 1, g: 1, b: 1, a: 0}
-  Dithering: 0.333333
-  Downsampling: 4
-  Opacity: 1
-  _shader: {fileID: -6465566751694194690, guid: 11e94cd5c3fe34771a02e77528668f69, type: 3}
+  <Color9>k__BackingField: {r: 1, g: 0, b: 0.3019608, a: 1}
+  <Color10>k__BackingField: {r: 1, g: 0.6392157, b: 0.003921569, a: 1}
+  <Color11>k__BackingField: {r: 1, g: 0.9254902, b: 0.15686275, a: 1}
+  <Color12>k__BackingField: {r: 0.003921569, g: 0.89411765, b: 0.21568628, a: 1}
+  <Color13>k__BackingField: {r: 0.16078432, g: 0.6784314, b: 1, a: 1}
+  <Color14>k__BackingField: {r: 0.5137255, g: 0.46666667, b: 0.6117647, a: 1}
+  <Color15>k__BackingField: {r: 1, g: 0.46666667, b: 0.65882355, a: 1}
+  <Color16>k__BackingField: {r: 1, g: 0.8, b: 0.6666667, a: 1}
+  <Extended>k__BackingField: 1
+  <Dithering>k__BackingField: 0.08
+  <Downsampling>k__BackingField: 5
+  <Opacity>k__BackingField: 1
+  _shader: {fileID: 4800000, guid: 11e94cd5c3fe34771a02e77528668f69, type: 3}
 --- !u!1 &1472358975
 GameObject:
   m_ObjectHideFlags: 0

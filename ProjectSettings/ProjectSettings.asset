@@ -166,7 +166,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Standalone: jp.keijiro.scooper
+    Standalone: com.Keijiro.Scooper
   buildNumber:
     Bratwurst: 0
     Standalone: 0
