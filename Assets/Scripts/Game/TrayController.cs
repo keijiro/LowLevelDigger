@@ -33,6 +33,8 @@ public sealed class TrayController : MonoBehaviour
         var cosParam = Mathf.Cos(_parameter * Mathf.PI) * 0.5f + 0.5f;
         var position = Vector2.Lerp(_inPoint, _outPoint, cosParam);
 
+        position += Vector2.up * Mathf.Abs(Mathf.Sin(Time.time * 8)) * 0.2f;
+
         transform.position = position;
     }
 
