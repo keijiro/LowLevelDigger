@@ -6,8 +6,8 @@
             <engine:Button text="FLUSH!" name="flush-button"/>
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:VisualElement name="balloon" style="position: absolute; top: 100px; left: 30px; background-color: rgb(199, 200, 185); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 0; padding-right: 4px; padding-bottom: 0; padding-left: 4px;">
-        <engine:VisualElement name="notch" style="position: absolute; left: 50%; bottom: -4px; width: 18px; height: 18px; background-color: rgb(199, 200, 185); rotate: 45deg;"/>
-        <engine:Label text="ONE MORE&#10;LIKE THIS&#10;PLEASE!" name="balloon-text" style="-unity-text-align: upper-center; color: rgb(70, 70, 70);"/>
+    <engine:VisualElement name="balloon" picking-mode="Ignore" style="position: absolute; left: 30px; background-color: rgb(199, 200, 185); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 0; padding-right: 4px; padding-bottom: 0; padding-left: 4px; bottom: 150px;">
+        <engine:VisualElement name="notch" picking-mode="Ignore" style="position: absolute; left: 50%; bottom: -4px; width: 18px; height: 18px; background-color: rgb(199, 200, 185); rotate: 45deg;"/>
+        <engine:Label text="ONE MORE&#10;LIKE THIS&#10;PLEASE!" name="balloon-text" picking-mode="Ignore" style="-unity-text-align: upper-center; color: rgb(70, 70, 70);"/>
     </engine:VisualElement>
 </engine:UXML>

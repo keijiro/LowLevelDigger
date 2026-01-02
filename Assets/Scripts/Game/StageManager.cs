@@ -36,6 +36,8 @@ public class StageManager : MonoBehaviour
         await Awaitable.WaitForSecondsAsync(1);
 
         _tray = Instantiate(_trayPrefab);
+
+        await RunItemDetectionLoopAsync();
     }
 
     async Awaitable InjectContentsAsync()
@@ -70,7 +72,7 @@ public class StageManager : MonoBehaviour
     {
         while (true)
         {
-            await Awaitable.WaitForSecondsAsync(2);
+            await Awaitable.WaitForSecondsAsync(1);
             _balloonController.ShowDefaultMessage();
 
             while (_itemDetector.DetectedItem == null &&
@@ -85,14 +87,24 @@ public class StageManager : MonoBehaviour
 
             await Awaitable.WaitForSecondsAsync(0.15f);
 
-            if (success)
-                _balloonController.ShowGoodMessage();
+            if (GameState.IsBombDetonated)
+            {
+                _balloonController.HideMessage();
+                _tray.StartExit();
+                await Awaitable.WaitForSecondsAsync(1);
+            }
             else
-                _balloonController.ShowBadMessage();
+            {
+                if (success)
+                    _balloonController.ShowGoodMessage();
+                else
+                    _balloonController.ShowBadMessage();
 
-            await Awaitable.WaitForSecondsAsync(0.5f);
-            _tray.StartExit();
-            await Awaitable.WaitForSecondsAsync(1);
+                await Awaitable.WaitForSecondsAsync(0.5f);
+                _tray.StartExit();
+                await Awaitable.WaitForSecondsAsync(1);
+            }
+
             Destroy(_tray.gameObject);
 
             await Awaitable.WaitForSecondsAsync(1);
@@ -128,7 +140,6 @@ public class StageManager : MonoBehaviour
         _flushButton.clicked += OnFlushClicked;
 
         InitializeStageAsync().Forget();
-        RunItemDetectionLoopAsync().Forget();
     }
 
     #endregion

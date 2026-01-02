@@ -40,6 +40,13 @@ public sealed class BalloonController : MonoBehaviour
     public void ShowBadMessage()
       => StartMessage(_badMessages[Random.Range(0, _badMessages.Length)]);
 
+    public void HideMessage()
+    {
+        _balloon.style.display = DisplayStyle.None;
+        _blink = false;
+        _time = 1000;
+    }
+
     #endregion
 
     #region MonoBehaviour Implementation
