@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,12 +113,12 @@ TextureImporter:
       name: Gem1
       rect:
         serializedVersion: 2
-        x: 5
-        y: 153
-        width: 116
-        height: 95
+        x: 83
+        y: 441
+        width: 287
+        height: 237
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -135,12 +135,12 @@ TextureImporter:
       name: Gem2
       rect:
         serializedVersion: 2
-        x: 182
-        y: 4
-        width: 99
-        height: 109
+        x: 534
+        y: 411
+        width: 219
+        height: 284
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -157,12 +157,12 @@ TextureImporter:
       name: Bomb
       rect:
         serializedVersion: 2
-        x: 336
-        y: 32
-        width: 170
-        height: 201
+        x: 976
+        y: 352
+        width: 330
+        height: 344
       alignment: 9
-      pivot: {x: 0.45903644, y: 0.369412}
+      pivot: {x: 0.45456803, y: 0.42084804}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,6 +171,72 @@ TextureImporter:
       bones: []
       spriteID: 89d2ac7fa2a5e4fd6b906a031f32dc0b
       internalID: -1473170979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gem3
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 72
+        width: 286
+        height: 271
+      alignment: 9
+      pivot: {x: 0.5, y: 0.45647225}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af93065b498dc4e03a628c3a5125aa2b
+      internalID: 731562364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gem4
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 74
+        width: 245
+        height: 267
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 359968d2e1457465ca9bc5af47fc0b15
+      internalID: 2012839825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coin
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 75
+        width: 262
+        height: 268
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fedaf72c48c44a3d9c9543c5195d56d
+      internalID: 1734788001
       vertices: []
       indices: 
       edges: []
@@ -190,8 +256,11 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Bomb: -1473170979
+      Coin: 1734788001
       Gem1: 1227485299
       Gem2: -690032841
+      Gem3: 731562364
+      Gem4: 2012839825
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
