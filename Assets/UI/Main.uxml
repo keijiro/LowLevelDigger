@@ -1,13 +1,13 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Main.uss?fileID=7433441132597879392&amp;guid=9da0721249415426db770358eab8f5dd&amp;type=3#Main"/>
-    <engine:VisualElement name="game-area" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"/>
-    <engine:VisualElement name="container" style="position: absolute; top: 20px; left: 20px; right: 20px;">
-        <engine:VisualElement name="row" style="flex-grow: 1; flex-direction: row-reverse;">
+    <engine:VisualElement name="game-area" class="game-area"/>
+    <engine:VisualElement name="container" class="hud-container">
+        <engine:VisualElement name="row" class="hud-row">
             <engine:Button text="FLUSH!" name="flush-button"/>
         </engine:VisualElement>
     </engine:VisualElement>
-    <engine:VisualElement name="balloon" picking-mode="Ignore" style="position: absolute; left: 30px; background-color: rgb(199, 200, 185); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 0; padding-right: 4px; padding-bottom: 0; padding-left: 4px; bottom: 150px;">
-        <engine:VisualElement name="notch" picking-mode="Ignore" style="position: absolute; left: 50%; bottom: -4px; width: 18px; height: 18px; background-color: rgb(199, 200, 185); rotate: 45deg;"/>
-        <engine:Label text="ONE MORE&#10;LIKE THIS&#10;PLEASE!" name="balloon-text" picking-mode="Ignore" style="-unity-text-align: upper-center; color: rgb(70, 70, 70);"/>
+    <engine:VisualElement name="balloon" picking-mode="Ignore" class="balloon">
+        <engine:VisualElement name="notch" picking-mode="Ignore" class="balloon__notch"/>
+        <engine:Label text="ONE MORE&#10;LIKE THIS&#10;PLEASE!" name="balloon-text" picking-mode="Ignore" class="balloon__text"/>
     </engine:VisualElement>
 </engine:UXML>

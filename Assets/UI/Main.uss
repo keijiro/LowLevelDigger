@@ -9,16 +9,51 @@
 
 .unity-button {
     background-color: rgb(195, 182, 52);
-    border-left-color: rgb(159, 98, 77);
-    border-right-color: rgb(159, 98, 77);
-    border-top-color: rgb(159, 98, 77);
-    border-bottom-color: rgb(159, 98, 77);
-    border-top-width: 3px;
-    border-right-width: 3px;
-    border-bottom-width: 3px;
-    border-left-width: 3px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    border-bottom-right-radius: 9px;
-    border-bottom-left-radius: 9px;
+    border-color: rgb(159, 98, 77);
+    border-width: 3px;
+    border-radius: 9px;
+}
+
+.balloon {
+    position: absolute;
+    left: 30px;
+    bottom: 150px;
+    background-color: rgb(199, 200, 185);
+    border-radius: 8px;
+    padding: 0 4px;
+}
+
+.balloon__notch {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    width: 18px;
+    height: 18px;
+    background-color: rgb(199, 200, 185);
+    rotate: 45deg;
+}
+
+.balloon__text {
+    -unity-text-align: upper-center;
+    color: rgb(70, 70, 70);
+}
+
+.game-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.hud-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+}
+
+.hud-row {
+    flex-grow: 1;
+    flex-direction: row-reverse;
 }
