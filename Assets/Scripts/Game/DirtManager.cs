@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.LowLevelPhysics2D;
 
-public class PaydirtManager : MonoBehaviour
+public class DirtManager : MonoBehaviour
 {
     #region Editable Fields
 

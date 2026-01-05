@@ -8,7 +8,7 @@ public sealed class DirtRenderer : MonoBehaviour
 {
     #region Editable Fields
 
-    [SerializeField] PaydirtManager _source = null;
+    [SerializeField] DirtManager _source = null;
 
     #endregion
 

@@ -41,7 +41,7 @@ MonoBehaviour:
   - {fileID: -3016271872207968763}
   m_RendererFeatureMap: 05a60a8fb60c24d6
   m_UseNativeRenderPass: 0
-  postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
+  postProcessData: {fileID: 0}
   m_AssetVersion: 3
   m_PrepassLayerMask:
     serializedVersion: 2
@@ -59,7 +59,7 @@ MonoBehaviour:
     passOperation: 2
     failOperation: 0
     zFailOperation: 0
-  m_ShadowTransparentReceive: 1
+  m_ShadowTransparentReceive: 0
   m_RenderingMode: 0
   m_DepthPrimingMode: 0
   m_CopyDepthMode: 1

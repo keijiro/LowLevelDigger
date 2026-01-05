@@ -7,7 +7,8 @@ public sealed class StageManager : MonoBehaviour
 
     [Space]
     [SerializeField] UIDocument _ui = null;
-    [SerializeField] PaydirtManager _paydirtManager = null;
+    [SerializeField] DirtManager _dirtManager = null;
+    [SerializeField] ItemSpawner _itemSpawner = null;
     [SerializeField] ScoopController _scoopController = null;
     [SerializeField] BalloonController _balloonController = null;
     [SerializeField] Animation _bucketAnimation = null;
@@ -21,7 +22,6 @@ public sealed class StageManager : MonoBehaviour
     #region Private Fields
 
     ItemDetector _itemDetector;
-    ItemSpawner _itemSpawner;
     Button _flushButton;
     TrayController _tray;
 
@@ -44,7 +44,7 @@ public sealed class StageManager : MonoBehaviour
 
     async Awaitable InjectContentsAsync()
     {
-        _paydirtManager.RequestInjection();
+        _dirtManager.RequestInjection();
         _itemSpawner.StartSpawnBombs(2, 2).Forget();
         _itemSpawner.StartSpawnGems(6, 2).Forget();
 
@@ -145,7 +145,6 @@ public sealed class StageManager : MonoBehaviour
     void Start()
     {
         _itemDetector = GetComponent<ItemDetector>();
-        _itemSpawner = GetComponent<ItemSpawner>();
 
         var root = _ui.rootVisualElement;
         _flushButton = root.Q<Button>("flush-button");
