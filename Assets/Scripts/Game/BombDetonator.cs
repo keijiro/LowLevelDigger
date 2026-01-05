@@ -61,7 +61,7 @@ public sealed class BombDetonator : MonoBehaviour
         if (_elapsed < _activationDelay) return;
 
         if (GetMaxNormalSpeed() > _speedThreshold)
-            GameState.IsBombDetonated = true;
+            GameState.DetonatedBomb = GetComponent<ItemController>();
     }
 
     #endregion

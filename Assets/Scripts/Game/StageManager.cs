@@ -12,6 +12,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] BalloonController _balloonController = null;
     [SerializeField] Animation _bucketAnimation = null;
     [SerializeField] ParticleSystem _coinFountain = null;
+    [SerializeField] ParticleSystem[] _explosionFx = null;
+    [SerializeField] CameraShake _cameraShake = null;
     [Space]
     [SerializeField] TrayController _trayPrefab = null;
 
@@ -77,18 +79,29 @@ public class StageManager : MonoBehaviour
             _balloonController.ShowDefaultMessage();
 
             while (_itemDetector.DetectedItem == null &&
-                   !GameState.IsBombDetonated)
+                   GameState.DetonatedBomb == null)
                 await Awaitable.FixedUpdateAsync();
 
-            if (GameState.IsBombDetonated)
+            if (GameState.DetonatedBomb != null)
                 FlushContentsAsync().Forget();
 
             var success = _itemDetector.DetectedItem != null &&
                           _itemDetector.DetectedItem.Type == _tray.TargetItemType;
 
+            if (GameState.DetonatedBomb != null)
+            {
+                var pos = GameState.DetonatedBomb.transform.position;
+                foreach (var fx in _explosionFx)
+                {
+                    fx.transform.position = pos;
+                    fx.Play();
+                }
+                _cameraShake.Shake();
+            }
+
             await Awaitable.WaitForSecondsAsync(0.15f);
 
-            if (GameState.IsBombDetonated)
+            if (GameState.DetonatedBomb != null)
             {
                 _balloonController.HideMessage();
                 _tray.StartExit();
@@ -120,7 +133,7 @@ public class StageManager : MonoBehaviour
             if (item != null) Destroy(item.gameObject);
 
             _itemDetector.ResetDetection();
-            GameState.IsBombDetonated = false;
+            GameState.DetonatedBomb = null;
 
             _tray = Instantiate(_trayPrefab);
         }
