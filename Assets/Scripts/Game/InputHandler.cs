@@ -26,7 +26,7 @@ public sealed class InputHandler : MonoBehaviour
       => _area.UnregisterCallback<PointerDownEvent>(OnPointerDown);
 
     void LateUpdate()
-      => IsPressed &= !Mouse.current.leftButton.wasReleasedThisFrame;
+      => IsPressed &= !Pointer.current.press.wasReleasedThisFrame;
 
     #endregion
 
