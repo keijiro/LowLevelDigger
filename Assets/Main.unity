@@ -417,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scoreboard
   _coinEmitter: {fileID: 857537240}
   _heartEmitter: {fileID: 2134382378}
-  _scoreSpeed: 140
+  _scoreSpeed: 100
 --- !u!1 &247061323
 GameObject:
   m_ObjectHideFlags: 0

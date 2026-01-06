@@ -27,6 +27,7 @@ public sealed class Scoreboard : MonoBehaviour
     {
         _coinEmitter.Emit(20);
         _heartEmitter.Play();
+        _scoreText.AddToClassList("scoreboard__text-hilight");
         _score.current += 20;
     }
 
@@ -49,7 +50,7 @@ public sealed class Scoreboard : MonoBehaviour
     {
         _ui = GetComponent<UIDocument>();
         _scoreText = _ui.rootVisualElement.Q<Label>("score-text");
-        _score.current = 1000;
+        _score.current = 100;
     }
 
     void Update()
@@ -57,7 +58,11 @@ public sealed class Scoreboard : MonoBehaviour
         if (_score.display < _score.current)
         {
             _score.display += (int)(_scoreSpeed * Time.deltaTime);
-            _score.display = Mathf.Min(_score.display, _score.current);
+            if (_score.display >= _score.current)
+            {
+                _score.display = _score.current;
+                _scoreText.RemoveFromClassList("scoreboard__text-hilight");
+            }
         }
         else if (_score.display > _score.current)
         {
