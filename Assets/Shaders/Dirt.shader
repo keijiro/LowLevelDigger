@@ -69,7 +69,7 @@ half4 Fragment(float4 positionCS : SV_POSITION,
 
     SubShader
     {
-        Tags { "RenderType"="Opaque" "RenderPipeline"="UniversalRenderPipeline" }
+        Tags { "RenderType"="Opaque" }
         Pass
         {
             HLSLPROGRAM

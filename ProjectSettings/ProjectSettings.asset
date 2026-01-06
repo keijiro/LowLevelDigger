@@ -8,10 +8,10 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
-  accelerometerFrequency: 60
+  accelerometerFrequency: 0
   companyName: Keijiro
   productName: Scooper
   defaultCursor: {fileID: 0}
@@ -167,6 +167,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Standalone: com.Keijiro.Scooper
+    iPhone: com.Keijiro.Scooper
   buildNumber:
     Bratwurst: 0
     Standalone: 0
@@ -182,7 +183,7 @@ PlayerSettings:
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
-  iPhoneScriptCallOptimization: 0
+  iPhoneScriptCallOptimization: 1
   ForceInternetPermission: 0
   ForceSDCardPermission: 0
   CreateWallpaper: 0
@@ -591,6 +592,9 @@ PlayerSettings:
   - serializedVersion: 3
     m_BuildTarget: WebGL
     m_Formats: 05000000
+  - serializedVersion: 3
+    m_BuildTarget: iOS
+    m_Formats: 03000000
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -879,7 +883,7 @@ PlayerSettings:
     WebGL: 3
     Windows Store Apps: 1
     XboxOne: 1
-    iPhone: 1
+    iPhone: 3
     tvOS: 1
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 0

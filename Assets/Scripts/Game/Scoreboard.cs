@@ -52,7 +52,7 @@ public sealed class Scoreboard : MonoBehaviour
         _score.current = 100;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (_score.display == _score.current)
         {
