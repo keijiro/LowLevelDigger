@@ -210,52 +210,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &76916354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 76916356}
-  - component: {fileID: 76916355}
-  m_Layer: 0
-  m_Name: Scoreboard
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &76916355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 76916354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02a69fc5d89374de5b5357d2338dbbd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Scoreboard
-  _coinEmitter: {fileID: 857537240}
-  _heartEmitter: {fileID: 2134382378}
---- !u!4 &76916356
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 76916354}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &130958158
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +313,7 @@ GameObject:
   - component: {fileID: 231048556}
   - component: {fileID: 231048559}
   - component: {fileID: 231048558}
+  - component: {fileID: 231048560}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -448,6 +403,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b19c72c898c24b34a85b71853506b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
+--- !u!114 &231048560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231048555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a69fc5d89374de5b5357d2338dbbd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scoreboard
+  _coinEmitter: {fileID: 857537240}
+  _heartEmitter: {fileID: 2134382378}
+  _scoreSpeed: 140
 --- !u!1 &247061323
 GameObject:
   m_ObjectHideFlags: 0
@@ -16254,7 +16224,7 @@ MonoBehaviour:
   _scoopController: {fileID: 1054568096}
   _balloonController: {fileID: 231048558}
   _bucketAnimation: {fileID: 247061325}
-  _scoreboard: {fileID: 76916355}
+  _scoreboard: {fileID: 231048560}
   _explosionEffect: {fileID: 2076488124}
   _trayPrefab: {fileID: 6018755574100643915, guid: b4cf7e6511a1a4c22a1dd2765d633bd7, type: 3}
 --- !u!4 &1622039341
@@ -21533,7 +21503,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 231048557}
-  - {fileID: 76916356}
   - {fileID: 1227057826}
   - {fileID: 1622039341}
   - {fileID: 1054568097}

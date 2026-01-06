@@ -67,3 +67,26 @@
     flex-grow: 1;
     flex-direction: row-reverse;
 }
+
+.scoreboard {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+
+.scoreboard .unity-text-element {
+    color: rgb(220, 220, 220);
+    text-shadow: 2px 2px 0 rgb(192, 107, 3);
+    -unity-text-align: middle-right;
+    margin: 0px;
+    padding: 0px;
+}
+
+.scoreboard__credit.unity-text-element {
+    font-size: 22px;
+    margin-bottom: -8px;
+}
+
+.scoreboard__text {
+    font-size: 40px;
+}
