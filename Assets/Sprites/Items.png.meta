@@ -183,12 +183,12 @@ TextureImporter:
       name: Bomb
       rect:
         serializedVersion: 2
-        x: 976
-        y: 352
-        width: 330
-        height: 344
+        x: 875
+        y: 359
+        width: 333
+        height: 405
       alignment: 9
-      pivot: {x: 0.44, y: 0.42084804}
+      pivot: {x: 0.4781692, y: 0.3738508}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

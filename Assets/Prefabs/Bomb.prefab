@@ -143,13 +143,7 @@ MonoBehaviour:
   - Type: 0
     Center: {x: 0, y: 0}
     Rotation: 0
-    Radius: 0.85
-    Sides: 0
-    Scale: {x: 0, y: 0}
-  - Type: 0
-    Center: {x: 0.57, y: 0.75}
-    Rotation: 0
-    Radius: 0.5
+    Radius: 0.91
     Sides: 0
     Scale: {x: 0, y: 0}
 --- !u!114 &3585347360033145857
