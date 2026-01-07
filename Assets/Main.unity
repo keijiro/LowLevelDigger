@@ -145,8 +145,8 @@ Transform:
   m_GameObject: {fileID: 63994785}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 1}
-  m_LocalScale: {x: 100, y: 6, z: 1}
+  m_LocalPosition: {x: 4.125, y: 0, z: 1}
+  m_LocalScale: {x: 8.25, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1763995852}
@@ -236,8 +236,8 @@ Transform:
   m_GameObject: {fileID: 130958158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.75, y: -3.5, z: 1}
-  m_LocalScale: {x: 6, y: 150, z: 1}
+  m_LocalPosition: {x: -8, y: -2.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 850060229}
@@ -5559,7 +5559,7 @@ Transform:
   m_GameObject: {fileID: 534811467}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.75, y: 6.25, z: 0}
+  m_LocalPosition: {x: 8.5, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5725,17 +5725,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CompositeShapeBuilder
   _shapes:
   - Type: 2
-    Center: {x: -7.75, y: -3.5}
+    Center: {x: -8, y: -2.5}
     Rotation: 0
     Radius: 0
     Sides: 0
-    Scale: {x: 0.5, y: 12}
+    Scale: {x: 0.5, y: 11}
   - Type: 2
-    Center: {x: 7.75, y: -1.5}
+    Center: {x: 8.5, y: -0.5}
     Rotation: 0
     Radius: 0
     Sides: 0
-    Scale: {x: 0.5, y: 16}
+    Scale: {x: 0.5, y: 15}
 --- !u!1 &857537238
 GameObject:
   m_ObjectHideFlags: 0
@@ -15854,8 +15854,8 @@ Transform:
   m_GameObject: {fileID: 1168327625}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 1}
-  m_LocalScale: {x: 100, y: 6, z: 1}
+  m_LocalPosition: {x: -4.125, y: 0, z: 1}
+  m_LocalScale: {x: 8.25, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1472358976}
@@ -16140,7 +16140,7 @@ Transform:
   m_GameObject: {fileID: 1472358975}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: -9.5, z: 0}
+  m_LocalPosition: {x: 8.5, y: -8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16176,11 +16176,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CompositeShapeBuilder
   _shapes:
   - Type: 2
-    Center: {x: -4, y: 0}
+    Center: {x: -4.125, y: 0}
     Rotation: 0
     Radius: 0
     Sides: 0
-    Scale: {x: 8, y: 0.5}
+    Scale: {x: 8.25, y: 0.5}
 --- !u!1 &1525134101
 GameObject:
   m_ObjectHideFlags: 0
@@ -16399,7 +16399,7 @@ Transform:
   m_GameObject: {fileID: 1763995851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: -9.5, z: 0}
+  m_LocalPosition: {x: -8, y: -8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16435,11 +16435,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CompositeShapeBuilder
   _shapes:
   - Type: 2
-    Center: {x: 4, y: 0}
+    Center: {x: 4.125, y: 0}
     Rotation: 0
     Radius: 0
     Sides: 0
-    Scale: {x: 8, y: 0.5}
+    Scale: {x: 8.25, y: 0.5}
 --- !u!1 &1786897733
 GameObject:
   m_ObjectHideFlags: 0
@@ -16608,8 +16608,8 @@ Transform:
   m_GameObject: {fileID: 1827773325}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.75, y: -1.5, z: 1}
-  m_LocalScale: {x: 6, y: 200, z: 1}
+  m_LocalPosition: {x: 8.5, y: -0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 850060229}

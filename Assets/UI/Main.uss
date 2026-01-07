@@ -28,7 +28,7 @@
 
 .balloon {
     position: absolute;
-    left: 30px;
+    left: 40px;
     bottom: 150px;
     background-color: rgb(199, 200, 185);
     border-radius: 8px;
@@ -62,7 +62,7 @@
 .reload-button {
     position: absolute;
     top: 160px;
-    right: 20px;
+    right: 16px;
     width: 128px;
     margin: 0px;
     padding: 0px;
@@ -71,7 +71,7 @@
 .scoreboard {
     position: absolute;
     right: 20px;
-    bottom: 10px;
+    bottom: 25px;
 }
 
 .scoreboard .unity-text-element {
@@ -100,8 +100,8 @@
 
 .title {
     position: absolute;
-    top: 20px;
-    right: 4px;
+    top: 18px;
+    right: 2px;
     width: 160px;
     height: 80px;
     background-image: url("project://database/Assets/UI/Title.png?fileID=21300000&amp;guid=15abfc19e1663463585fdae6ed47e7ce&amp;type=3#Title");
