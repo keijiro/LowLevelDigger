@@ -7,6 +7,7 @@ public class ScoopController : MonoBehaviour
 
     [Space]
     [SerializeField] float _pickerSpring = 2f;
+    [SerializeField] float _pickerSpringBoost = 1.5f;
     [SerializeField] float _anchorSpring = 2f;
     [SerializeField] float _damping = 1;
     [Space]
@@ -71,7 +72,10 @@ public class ScoopController : MonoBehaviour
         {
             if (_input.IsPressed)
             {
-                if (!_pickerJoint.isValid) CreatePickerJoint();
+                if (!_pickerJoint.isValid)
+                    CreatePickerJoint();
+                else
+                    UpdatePickerJointSpring();
             }
             else
             {
@@ -111,6 +115,9 @@ public class ScoopController : MonoBehaviour
     PhysicsJoint _pickerJoint;
     PhysicsJoint _anchorJoint;
 
+    float GetPickerSpringFrequency()
+      => _pickerSpring * Mathf.Pow(_pickerSpringBoost, _input.TouchCount - 1);
+
     void CreatePickerJoint()
     {
         var jointDef = PhysicsDistanceJointDefinition.defaultDefinition;
@@ -123,10 +130,16 @@ public class ScoopController : MonoBehaviour
 
         jointDef.distance = 0;
         jointDef.enableSpring = true;
-        jointDef.springFrequency = _pickerSpring;
+        jointDef.springFrequency = GetPickerSpringFrequency();
         jointDef.springDamping = _damping;
 
         _pickerJoint = PhysicsWorld.defaultWorld.CreateJoint(jointDef);
+    }
+
+    void UpdatePickerJointSpring()
+    {
+        var joint = (PhysicsDistanceJoint)_pickerJoint;
+        joint.springFrequency = GetPickerSpringFrequency();
     }
 
     void CreateAnchorJoint()

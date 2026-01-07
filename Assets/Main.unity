@@ -15766,6 +15766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LowLevelScoopMouseController
   _pickerSpring: 1.5
+  _pickerSpringBoost: 1.5
   _anchorSpring: 1
   _damping: 1
   _scoopPrefab: {fileID: 2647266654507706872, guid: eb2059886b3294296886829e8074bc88, type: 3}
@@ -16352,9 +16353,9 @@ MonoBehaviour:
   _dirtManager: {fileID: 767570500}
   _itemSpawner: {fileID: 623178265}
   _scoopController: {fileID: 1054568096}
-  _balloonController: {fileID: 231048558}
   _bucketAnimation: {fileID: 247061325}
   _scoreboard: {fileID: 231048560}
+  _balloonController: {fileID: 231048558}
   _explosionEffect: {fileID: 2076488124}
   _trayPrefab: {fileID: 6018755574100643915, guid: b4cf7e6511a1a4c22a1dd2765d633bd7, type: 3}
 --- !u!4 &1622039341

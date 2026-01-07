@@ -8,6 +8,7 @@ public sealed class InputHandler : MonoBehaviour
 
     public Vector2 Position => CalculateNormalizedPosition();
     public bool IsPressed { get; private set; }
+    public int TouchCount { get; private set; }
 
     #endregion
 
@@ -25,6 +26,15 @@ public sealed class InputHandler : MonoBehaviour
         return localPos / height;
     }
 
+    int CountActiveTouches()
+    {
+        var count = 0;
+        if (Touchscreen.current != null)
+            foreach (var touch in Touchscreen.current.touches)
+                if (touch.press.isPressed) count++;
+        return count;
+    }
+
     #endregion
 
     #region MonoBehaviour Implementation
@@ -40,14 +50,17 @@ public sealed class InputHandler : MonoBehaviour
       => _area.UnregisterCallback<PointerDownEvent>(OnPointerDown);
 
     void LateUpdate()
-      => IsPressed &= !Pointer.current.press.wasReleasedThisFrame;
+    {
+        IsPressed &= !Pointer.current.press.wasReleasedThisFrame;
+        TouchCount = IsPressed ? Mathf.Max(1, CountActiveTouches()) : 0;
+    }
 
     #endregion
 
     #region UI Event Handlers
 
     void OnPointerDown(PointerDownEvent evt)
-      => IsPressed = true;
+      => (IsPressed, TouchCount) = (true, 1);
 
     #endregion
 }
