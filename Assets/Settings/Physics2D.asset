@@ -134,7 +134,7 @@ MonoBehaviour:
   m_PhysicsBodyDefinition:
     m_BodyType: 2
     m_BodyConstraints: 0
-    m_TransformWriteMode: 3
+    m_TransformWriteMode: 0
     m_Position: {x: 0, y: 0}
     m_Rotation:
       direction: {x: 1, y: 0}

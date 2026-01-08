@@ -28,6 +28,7 @@ public class DynamicBodyBridge : MonoBehaviour
 
         var body = Body = PhysicsWorld.defaultWorld.CreateBody(bodyDef);
         body.userData = new PhysicsUserData { objectValue = gameObject };
+        body.transformObject = transform;
 
         var shapeDef = PhysicsShapeDefinition.defaultDefinition;
         shapeDef.density = _density;
@@ -41,17 +42,6 @@ public class DynamicBodyBridge : MonoBehaviour
         GetComponent<CompositeShapeBuilder>().CreateShapes(Body, shapeDef);
     }
 
-    void SyncTransform()
-    {
-        var xy = Body.transform.position;
-        var z = transform.position.z;
-
-        var rz =Body.transform.rotation.angle * Mathf.Rad2Deg;
-        var r = Quaternion.AngleAxis(rz, Vector3.forward);
-
-        transform.SetPositionAndRotation(new Vector3(xy.x, xy.y, z), r);
-    }
-
     #endregion
 
     #region MonoBehaviour Implementation
@@ -59,16 +49,12 @@ public class DynamicBodyBridge : MonoBehaviour
     void OnEnable()
     {
         if (!Body.isValid) CreateBody();
-        SyncTransform();
     }
 
     void OnDisable()
     {
         if (Body.isValid) Body.Destroy();
     }
-
-    void FixedUpdate()
-      => SyncTransform();
 
     #endregion
 }
