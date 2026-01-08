@@ -40,8 +40,6 @@ public class CompositeShapeBuilder : MonoBehaviour
 
     #region Shape Creation
 
-    const int MaxPolygonSides = 10;
-
     void CreateShape(PhysicsBody body, PhysicsShapeDefinition def, ShapeElement shape)
     {
         switch (shape.Type)
@@ -154,14 +152,9 @@ public class CompositeShapeBuilder : MonoBehaviour
 
     PolygonGeometry BuildRegularPolygonGeometry(ShapeElement element)
     {
-        var count = Mathf.Clamp(element.Sides, 3, MaxPolygonSides);
-        var vertices = new Vector2[count];
-        for (var i = 0; i < count; ++i)
-        {
-            var r = (360f * i / count) * Mathf.Deg2Rad;
-            vertices[i] = new Vector2(Mathf.Cos(r), Mathf.Sin(r)) * element.Radius;
-        }
-        return PolygonGeometry.Create(vertices, 0);
+        var geometry = GeometryCache.GetRegularPolygon(element.Sides);
+        var scale = new Vector3(element.Radius, element.Radius, 1f);
+        return geometry.Transform(Matrix4x4.Scale(scale), true);
     }
 
     #endregion
