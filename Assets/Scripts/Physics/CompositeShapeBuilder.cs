@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.LowLevelPhysics2D;
 
-public class CompositeShapeBuilder : MonoBehaviour
+[ExecuteInEditMode]
+public sealed class CompositeShapeBuilder : MonoBehaviour
 {
     #region Types
 
@@ -46,51 +47,10 @@ public class CompositeShapeBuilder : MonoBehaviour
 
     #endregion
 
-    #region Private Helpers
+    #region Debug Visualization
 
-    PhysicsWorld World => PhysicsWorld.defaultWorld;
-
-    PolygonGeometry BuildRegularPolygonGeometry(in ShapeElement shape)
-    {
-        var geo = GeometryCache.GetRegularPolygon(shape.Sides);
-        var scale = new Vector3(shape.Radius, shape.Radius, 1);
-        return geo.Transform(Matrix4x4.Scale(scale), true);
-    }
-
-    CircleGeometry CreateCircle(in ShapeElement shape)
-      => new CircleGeometry { center = shape.Center, radius = shape.Radius };
-
-    PolygonGeometry CreatePolygon(in ShapeElement shape)
-    {
-        var rot = new PhysicsRotate(shape.Rotation * Mathf.Deg2Rad);
-        var xform = new PhysicsTransform(shape.Center, rot);
-        return BuildRegularPolygonGeometry(shape).Transform(xform);
-    }
-
-    PolygonGeometry CreateBox(ShapeElement shape)
-    {
-        var rot = new PhysicsRotate(shape.Rotation * Mathf.Deg2Rad);
-        var xform = new PhysicsTransform(shape.Center, rot);
-        return PolygonGeometry.CreateBox(shape.Scale, 0, xform);
-    }
-
-    void DrawGeometry(CircleGeometry geo)
-    {
-        var xform = PhysicsMath.ToPhysicsTransform(transform, World.transformPlane);
-        World.DrawGeometry(geo, xform, Gizmos.color);
-    }
-
-    void DrawGeometry(PolygonGeometry geo)
-    {
-        var xform = PhysicsMath.ToPhysicsTransform(transform, World.transformPlane);
-        World.DrawGeometry(geo, xform, Gizmos.color);
-    }
-
-    #endregion
-
-    #region Gizmos
-
-    void OnDrawGizmos()
+    #if UNITY_EDITOR
+    void OnRenderObject()
     {
         if (Application.isPlaying) return;
 
@@ -104,6 +64,43 @@ public class CompositeShapeBuilder : MonoBehaviour
             }
         }
     }
+    #endif
+
+    #endregion
+
+    #region Private Helpers
+
+    PhysicsWorld World
+      => PhysicsWorld.defaultWorld;
+
+    PhysicsTransform ConvertedTransform
+      => PhysicsMath.ToPhysicsTransform(transform, World.transformPlane);
+
+    PhysicsTransform ExtractTransform(in ShapeElement shape)
+      => new PhysicsTransform
+           (shape.Center, new PhysicsRotate(shape.Rotation * Mathf.Deg2Rad));
+
+    PolygonGeometry BuildRegularPolygonGeometry(in ShapeElement shape)
+    {
+        var geo = GeometryCache.GetRegularPolygon(shape.Sides);
+        var scale = new Vector3(shape.Radius, shape.Radius, 1);
+        return geo.Transform(Matrix4x4.Scale(scale), true);
+    }
+
+    CircleGeometry CreateCircle(in ShapeElement shape)
+      => new CircleGeometry { center = shape.Center, radius = shape.Radius };
+
+    PolygonGeometry CreatePolygon(in ShapeElement shape)
+      => BuildRegularPolygonGeometry(shape).Transform(ExtractTransform(shape));
+
+    PolygonGeometry CreateBox(in ShapeElement shape)
+      => PolygonGeometry.CreateBox(shape.Scale, 0, ExtractTransform(shape));
+
+    void DrawGeometry(in CircleGeometry geo)
+      => World.DrawGeometry(geo, ConvertedTransform, Gizmos.color);
+
+    void DrawGeometry(in PolygonGeometry geo)
+      => World.DrawGeometry(geo, ConvertedTransform, Gizmos.color);
 
     #endregion
 }
