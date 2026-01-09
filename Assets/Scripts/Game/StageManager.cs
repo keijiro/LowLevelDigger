@@ -48,7 +48,7 @@ public sealed class StageManager : MonoBehaviour
         _itemSpawner.StartSpawnBombs(2, 2).Forget();
         _itemSpawner.StartSpawnGems(8, 2).Forget();
 
-        await Awaitable.WaitForSecondsAsync(2.2f);
+        await Awaitable.WaitForSecondsAsync(2);
 
         _scoopController.SpawnScoopInstance();
     }
